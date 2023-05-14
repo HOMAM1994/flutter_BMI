@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
@@ -72,6 +70,10 @@ class Login extends StatelessWidget {
                 color: Colors.orange,
                 size: 35.0,
               ),
+              suffixIcon: const Icon(
+                Icons.remove_red_eye,
+                color: Colors.orange,
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(25.0),
               ),
@@ -80,55 +82,49 @@ class Login extends StatelessWidget {
           const SizedBox(
             height: 35,
           ),
-         Row(
-           mainAxisAlignment: MainAxisAlignment.center,
-           children: [
-           Container(
-             width: 150,
-             decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
-             clipBehavior: Clip.antiAliasWithSaveLayer,
-             child: ElevatedButton(
-               style: const ButtonStyle(
-                 visualDensity: VisualDensity(
-                   horizontal: VisualDensity.maximumDensity,
-                   vertical: VisualDensity.maximumDensity,
-                 ),
-               ),
-               onPressed: () {},
-               child: const Text(
-                 "Login",
-                 style: TextStyle(
-                   fontSize: 25,
-                   fontWeight: FontWeight.bold,
-                 ),
-               ),
-             ),
-           ),
-           const SizedBox(
-             width: 15,
-           ),
-           Container(
-             width: 150,
-             decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
-             clipBehavior: Clip.antiAliasWithSaveLayer,
-             child: ElevatedButton(
-               style: const ButtonStyle(
-                 visualDensity: VisualDensity(
-                   horizontal: VisualDensity.maximumDensity,
-                   vertical: VisualDensity.maximumDensity,
-                 ),
-               ),
-               onPressed: () {},
-               child: const Text(
-                 "SingUP",
-                 style: TextStyle(
-                   fontSize: 25,
-                   fontWeight: FontWeight.bold,
-                 ),
-               ),
-             ),
-           ),
-         ],),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+              color: Colors.blue,
+            ),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            width: 250,
+            child: MaterialButton(
+              onPressed: () {},
+              child: const Text(
+                "LOGIN",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              const Text(
+                "Don\'t have account ? ",
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: const Text(
+                  "Register now ",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );
