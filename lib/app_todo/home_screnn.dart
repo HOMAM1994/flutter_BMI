@@ -1,10 +1,10 @@
+import 'package:bmi/app_todo/shared_parts/floting_botten.dart';
 import 'package:bmi/app_todo/shared_screen/arcived_task.dart';
 import 'package:bmi/app_todo/shared_screen/done_task.dart';
 import 'package:bmi/app_todo/shared_screen/task.dart';
 import 'package:flutter/material.dart';
 import 'database/database.dart';
 import 'shared_parts/appbar.dart';
-import 'shared_parts/floting_botten.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,12 +15,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List screenBody = [
-    const Task(),
+    Task(),
     const DoneTask(),
     const ArchivedTask(),
   ];
+  IconData fbIcon = Icons.edit;
   int index = 0;
-  var scafoldkey = GlobalKey <ScaffoldState>();
+  var formkey = GlobalKey<FormState>();
+  var scafoldkey = GlobalKey<ScaffoldState>();
+  bool isBottomSheet = false;
 
   @override
   void initState() {
@@ -33,7 +36,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       key: scafoldkey,
       appBar: appbar("${screenBody[index]}"),
-      body: screenBody[index],
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          screenBody[index],
+        ],
+      ),
+
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
@@ -67,11 +76,35 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          scafoldkey.currentState?.showBottomSheet(
-                (context) => flotingBotten(),
-          );
+          if (isBottomSheet) {
+            if (form.currentState!.validate()) {
+              insertDataBase(database!);
+              Navigator.pop(context);
+              isBottomSheet = false;
+              setState(() {
+                fbIcon = Icons.edit;
+              });
+            }
+          } else {
+            scafoldkey.currentState
+                ?.showBottomSheet(
+                  (context) => flotingBotten(context),
+                )
+                .closed
+                .then((value) {
+              isBottomSheet =
+              false;
+              setState(() {
+                fbIcon = Icons.edit;
+              });
+            });
+            isBottomSheet = true;
+            setState(() {
+              fbIcon = Icons.add;
+            });
+          }
         },
-        child: const Icon(Icons.add),
+        child: Icon(fbIcon),
       ),
     );
   }

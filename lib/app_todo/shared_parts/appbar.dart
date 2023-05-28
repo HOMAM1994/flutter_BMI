@@ -13,13 +13,17 @@ Widget bodyScreen(String name) {
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       Center(
-          child: Text(
-            name,
-        style: const TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
-      )),
+          child: Row(
+            children: [CircleAvatar(child: Text(
+              name,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ) ,),
+
+            ],
+          )),
     ],
   );
 }
