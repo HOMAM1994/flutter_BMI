@@ -1,8 +1,13 @@
-import 'package:bmi/app_todo/home_screnn.dart';
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
+import 'app_todo/bloc/bloc_observe.dart';
+import 'app_todo/home_screnn.dart';
+
 void main() {
-  runApp(const MyApp());
+
+   Bloc.observer = MyBlocObserver();
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -17,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: const HomeScreen(),
+      home: HomeScreen(),
     );
   }
 }
