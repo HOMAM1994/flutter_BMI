@@ -10,8 +10,8 @@ class Messenger extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        title: Row(
-          children: const [
+        title: const Row(
+          children: [
             CircleAvatar(
               radius: 30,
               backgroundImage: NetworkImage(
@@ -75,7 +75,7 @@ class Messenger extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            SingleChildScrollView(
+            const SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
@@ -83,7 +83,7 @@ class Messenger extends StatelessWidget {
                     children: [
                       Stack(
                         alignment: AlignmentDirectional.bottomEnd,
-                        children: const [
+                        children: [
                           CircleAvatar(
                             radius: 30,
                             backgroundImage: NetworkImage(
@@ -95,7 +95,7 @@ class Messenger extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 60,
                         child: Text(
                           "homam alslamat ",
@@ -105,14 +105,14 @@ class Messenger extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 15,
                   ),
                   Column(
                     children: [
                       Stack(
                         alignment: AlignmentDirectional.bottomEnd,
-                        children: const [
+                        children: [
                           CircleAvatar(
                             radius: 30,
                             backgroundImage: NetworkImage(
@@ -124,7 +124,7 @@ class Messenger extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 60,
                         child: Text(
                           "homam alslamat ",
@@ -134,14 +134,14 @@ class Messenger extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 15,
                   ),
                   Column(
                     children: [
                       Stack(
                         alignment: AlignmentDirectional.bottomEnd,
-                        children: const [
+                        children: [
                           CircleAvatar(
                             radius: 30,
                             backgroundImage: NetworkImage(
@@ -153,7 +153,7 @@ class Messenger extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 60,
                         child: Text(
                           "homam alslamat ",
@@ -163,14 +163,14 @@ class Messenger extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 15,
                   ),
                   Column(
                     children: [
                       Stack(
                         alignment: AlignmentDirectional.bottomEnd,
-                        children: const [
+                        children: [
                           CircleAvatar(
                             radius: 30,
                             backgroundImage: NetworkImage(
@@ -182,7 +182,7 @@ class Messenger extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 60,
                         child: Text(
                           "homam alslamat ",
@@ -192,14 +192,14 @@ class Messenger extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 15,
                   ),
                   Column(
                     children: [
                       Stack(
                         alignment: AlignmentDirectional.bottomEnd,
-                        children: const [
+                        children: [
                           CircleAvatar(
                             radius: 30,
                             backgroundImage: NetworkImage(
@@ -211,7 +211,7 @@ class Messenger extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 60,
                         child: Text(
                           "homam alslamat ",
@@ -221,14 +221,14 @@ class Messenger extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 15,
                   ),
                   Column(
                     children: [
                       Stack(
                         alignment: AlignmentDirectional.bottomEnd,
-                        children: const [
+                        children: [
                           CircleAvatar(
                             radius: 30,
                             backgroundImage: NetworkImage(
@@ -240,7 +240,7 @@ class Messenger extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 60,
                         child: Text(
                           "homam alslamat ",
@@ -250,14 +250,14 @@ class Messenger extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 15,
                   ),
                   Column(
                     children: [
                       Stack(
                         alignment: AlignmentDirectional.bottomEnd,
-                        children: const [
+                        children: [
                           CircleAvatar(
                             radius: 30,
                             backgroundImage: NetworkImage(
@@ -269,7 +269,7 @@ class Messenger extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 60,
                         child: Text(
                           "homam alslamat ",
@@ -287,13 +287,13 @@ class Messenger extends StatelessWidget {
             Expanded(
               child: ListView.separated(
                 itemCount: 10,
-                itemBuilder: (context, index) => Row(
+                itemBuilder: (context, index) => const Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Stack(
                       alignment: AlignmentDirectional.bottomEnd,
-                      children: const [
+                      children: [
                         CircleAvatar(
                           radius: 30,
                           backgroundImage: NetworkImage(
@@ -305,7 +305,7 @@ class Messenger extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 60,
                       child: Text(
                         "homam alslamat ",

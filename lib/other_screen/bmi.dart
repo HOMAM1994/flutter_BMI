@@ -10,13 +10,13 @@ class Bmi extends StatefulWidget {
 }
 
 class _BmiState extends State<Bmi> {
-  var Height = 180.0;
-  var Weight = 60;
-  var Age = 28;
-  var BMI = 0.0;
-  var Gender = "Male";
-  bool Ismail = true;
-  TextStyle styles= TextStyle(
+  var height = 180.0;
+  var weight = 60;
+  var age = 28;
+  var bmi = 0.0;
+  var gender = "Male";
+  bool ismail = true;
+  TextStyle styles=const TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: Colors.white,
@@ -37,10 +37,10 @@ class _BmiState extends State<Bmi> {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: [
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
-                children: const [
+                children: [
                   Text(
                     "BMI_CALCULATOR",
                     style: TextStyle(
@@ -61,20 +61,20 @@ class _BmiState extends State<Bmi> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
-                          Ismail = true;
-                          Gender = "Male";
+                          ismail = true;
+                          gender = "Male";
                         });
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Ismail
+                            color: ismail
                                 ? colors = Colors.deepPurple
                                 : colors = Colors.blueGrey,
                             borderRadius: BorderRadius.circular(25)),
                         width: 175,
                         height: 200,
-                        child: Column(
-                          children: const [
+                        child: const Column(
+                          children: [
                             Image(
                               image: AssetImage(
                                 'assets/images/gg.png',
@@ -97,20 +97,20 @@ class _BmiState extends State<Bmi> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
-                          Ismail = false;
-                          Gender = "Female";
+                          ismail = false;
+                          gender = "Female";
                         });
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Ismail
+                            color: ismail
                                 ? colors = Colors.blueGrey
                                 : colors = Colors.deepPurple,
                             borderRadius: BorderRadius.circular(25)),
                         width: 175,
                         height: 200,
-                        child: Column(
-                          children: const [
+                        child: const Column(
+                          children: [
                             Image(
                               image: AssetImage(
                                 'assets/images/vvv.png',
@@ -158,7 +158,7 @@ class _BmiState extends State<Bmi> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            "${Height.round()}",
+                            "${height.round()}",
                             style: const TextStyle(
                               fontSize: 32,
                               fontWeight: FontWeight.w800,
@@ -175,12 +175,12 @@ class _BmiState extends State<Bmi> {
                         ],
                       ),
                       Slider(
-                        value: Height,
+                        value: height,
                         max: 250,
                         min: 100,
                         onChanged: (value) {
                           setState(() {
-                            Height = value;
+                            height = value;
                           });
                         },
                       ),
@@ -220,7 +220,7 @@ class _BmiState extends State<Bmi> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "$Weight",
+                                "$weight",
                                 style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 30,
@@ -243,7 +243,7 @@ class _BmiState extends State<Bmi> {
                               FloatingActionButton(
                                 onPressed: () {
                                   setState(() {
-                                    Weight--;
+                                    weight--;
                                   });
                                 },
                                 mini: true,
@@ -252,7 +252,7 @@ class _BmiState extends State<Bmi> {
                               FloatingActionButton(
                                 onPressed: () {
                                   setState(() {
-                                    Weight++;
+                                    weight++;
                                   });
                                 },
                                 mini: true,
@@ -287,7 +287,7 @@ class _BmiState extends State<Bmi> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "$Age",
+                                "$age",
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 30,
@@ -311,7 +311,7 @@ class _BmiState extends State<Bmi> {
                               FloatingActionButton(
                                 onPressed: () {
                                   setState(() {
-                                    Age--;
+                                    age--;
                                   });
                                 },
                                 mini: true,
@@ -320,7 +320,7 @@ class _BmiState extends State<Bmi> {
                               FloatingActionButton(
                                 onPressed: () {
                                   setState(() {
-                                    Age++;
+                                    age++;
                                   });
                                 },
                                 mini: true,
@@ -346,7 +346,7 @@ class _BmiState extends State<Bmi> {
                 child: MaterialButton(
                   onPressed: () {
                     setState(() {
-                      BMI = Weight / pow(Height / 100, 2);
+                      bmi = weight / pow(height / 100, 2);
                     });
                     showDialog(
                       context: context,
@@ -359,23 +359,23 @@ class _BmiState extends State<Bmi> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                             Text(
-                              "Gender : $Gender",
+                              "Gender : $gender",
                               style: styles,
                             ),
                             Text(
-                              "Height : ${Height.round()}",
+                              "Height : ${height.round()}",
                               style: styles,
                             ),
                             Text(
-                              "Weight : $Weight",
+                              "Weight : $weight",
                               style: styles,
                             ),
                             Text(
-                              "Age : $Age",
+                              "Age : $age",
                               style: styles,
                             ),
                             Text(
-                              "BMI : $BMI",
+                              "BMI : $bmi",
                               style: styles,
                             ),
 

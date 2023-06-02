@@ -3,14 +3,14 @@ import 'package:bmi/app_todo/shared_parts/floting_botten.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/counter_states.dart';
-import 'database/controler_datadase.dart';
 import 'shared_parts/appbar.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
 
 
-  var formkey = GlobalKey<FormState>();
-  var scafoldkey = GlobalKey<ScaffoldState>();
+  var formKey = GlobalKey<FormState>();
+  var scaffoldKey = GlobalKey<ScaffoldState>();
 
   HomeScreen({super.key});
 
@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
       child: BlocConsumer<CounterApp, CounterStatus>(
           builder: (context, state) {
             return Scaffold(
-              key: scafoldkey,
+              key: scaffoldKey,
               appBar: appbar(
                   "${CounterApp.get(context).screenBody[CounterApp.get(context).currentIndex]}"),
               body:CounterApp.get(context)
@@ -69,7 +69,7 @@ class HomeScreen extends StatelessWidget {
 
                      }
                   } else {
-                    scafoldkey.currentState
+                    scaffoldKey.currentState
                         ?.showBottomSheet(
                           (context) => flotingBotten(context),
                         )

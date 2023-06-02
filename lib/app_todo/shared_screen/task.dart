@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class Task extends StatelessWidget {
   const Task({Key? key}) : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<CounterApp, CounterStatus>(
       listener: (context, state) {
@@ -37,6 +38,7 @@ class Task extends StatelessWidget {
                   await CounterApp.get(context).deleteData(
                     id: CounterApp.get(context).listDataAll[index]['id'],
                   );
+                  return null;
                  },
                 child: Row(
                   mainAxisSize: MainAxisSize.max,

@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +14,7 @@ class DoneTask extends StatelessWidget {
         CounterApp.get(context).getDatabase(CounterApp.get(context).database);
       },
       builder: (context, state) {
-        return CounterApp.get(context).listDataDone == 0
+        return CounterApp.get(context).listDataDone .isEmpty
             ? const Center(child: CircularProgressIndicator())
             : ListView.separated(
                 shrinkWrap: true,
@@ -25,10 +24,10 @@ class DoneTask extends StatelessWidget {
                       .listDataDone[index]['id']
                       .toString()),
                   background: Container(
-                    color: Theme.of(context).errorColor,
+                    color:Colors.red.shade700,
                     alignment: Alignment.centerRight,
-                    padding: EdgeInsetsDirectional.only(end: 25),
-                    child: Icon(Icons.delete_forever),
+                    padding: const EdgeInsetsDirectional.only(end: 25),
+                    child: const Icon(Icons.delete_forever),
                   ),
                   direction: DismissDirection.endToStart,
                   onDismissed: (direction) {
@@ -40,6 +39,7 @@ class DoneTask extends StatelessWidget {
                     await CounterApp.get(context).deleteData(
                       id: CounterApp.get(context).listDataDone[index]['id'],
                     );
+                    return null;
 
                   },
                   child: Row(

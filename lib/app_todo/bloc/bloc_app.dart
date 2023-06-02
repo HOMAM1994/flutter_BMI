@@ -1,8 +1,6 @@
-import 'package:bloc/bloc.dart';
 import 'package:bmi/app_todo/shared_screen/arcived_task.dart';
 import 'package:bmi/app_todo/shared_screen/done_task.dart';
 import 'package:bmi/app_todo/shared_screen/task.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sqflite/sqflite.dart';
@@ -14,9 +12,9 @@ class CounterApp extends Cubit<CounterStatus> {
 
   static CounterApp get(context) => BlocProvider.of(context);
   List screenBody = [
-    Task(),
-    DoneTask(),
-    ArchivedTask(),
+    const Task(),
+    const DoneTask(),
+    const ArchivedTask(),
   ];
   int currentIndex = 0;
 
@@ -50,9 +48,7 @@ class CounterApp extends Cubit<CounterStatus> {
             .execute(
                 'CREATE TABLE Test (id INTEGER PRIMARY KEY, task TEXT, status TEXT, date TEXT,time TEXT)')
             .then((value) {
-          print("create DataBase");
         }).catchError((error) {
-          print('Error is $error');
         });
       },
       onOpen: (database) {},
@@ -101,8 +97,7 @@ class CounterApp extends Cubit<CounterStatus> {
     database!.rawUpdate(
         'UPDATE Test SET status = ? WHERE id = ?', [status, id]).then((value) {
       emit(UpdateDatabaseApp());
-      print('updated : $status id : $id ');
-    });
+      });
   }
 
   Future deleteData({required int id}) async {

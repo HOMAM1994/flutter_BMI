@@ -14,7 +14,7 @@ class ArchivedTask extends StatelessWidget {
         CounterApp.get(context).getDatabase(CounterApp.get(context).database);
       },
       builder: (context, state) {
-        return CounterApp.get(context).listDataArchived == 0
+        return CounterApp.get(context).listDataArchived.isEmpty
             ? const Center(child: CircularProgressIndicator())
             : ListView.separated(
                 shrinkWrap: true,
@@ -24,7 +24,7 @@ class ArchivedTask extends StatelessWidget {
                       .listDataArchived[index]['id']
                       .toString()),
                   background: Container(
-                    color: Theme.of(context).errorColor,
+                    color: Colors.red.shade700,
                     alignment: Alignment.centerRight,
                     padding: const EdgeInsetsDirectional.only(end: 25),
                     child: const Icon(Icons.delete_forever),
@@ -38,6 +38,7 @@ class ArchivedTask extends StatelessWidget {
                       await CounterApp.get(context).deleteData(
                         id: CounterApp.get(context).listDataArchived[index]['id'],
                       );
+                      return null;
 
                   },
                   child: Row(
