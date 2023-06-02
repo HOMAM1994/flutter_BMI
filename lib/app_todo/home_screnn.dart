@@ -3,7 +3,7 @@ import 'package:bmi/app_todo/shared_parts/floting_botten.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/counter_states.dart';
-import 'database/database.dart';
+import 'database/controler_datadase.dart';
 import 'shared_parts/appbar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -63,9 +63,11 @@ class HomeScreen extends StatelessWidget {
                       CounterApp.get(context)
                           .insertDataBase(CounterApp.get(context).database!);
                       Navigator.pop(context);
+
                       CounterApp.get(context).changBottomSheet(isShow: false,
                           icon: Icons.edit);
-                    }
+
+                     }
                   } else {
                     scafoldkey.currentState
                         ?.showBottomSheet(

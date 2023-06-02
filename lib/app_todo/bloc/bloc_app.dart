@@ -20,13 +20,28 @@ class CounterApp extends Cubit<CounterStatus> {
   ];
   int currentIndex = 0;
 
-  Database? database;
-  List<Map>? listDataAll;
-  List<Map>? listDataDone;
-  List<Map>? listDataArchived;
+  IconData fbIcon = Icons.edit;
+  bool isBottomSheet = false;
 
-  void createDataBase() {
-    openDatabase(
+  Database? database;
+  List<Map> listDataAll = [];
+  List<Map> listDataDone = [];
+  List<Map> listDataArchived = [];
+
+  void changIndex(index) {
+    currentIndex = index;
+    emit(ChangBottom());
+  }
+
+  void changBottomSheet({required bool isShow, required IconData icon}) {
+    isBottomSheet = isShow;
+    fbIcon = icon;
+    emit(ChangBottomSheet());
+  }
+
+  ///////////////////////////////
+  void createDataBase() async {
+    await openDatabase(
       "databaseTest.db",
       version: 1,
       onCreate: (Database db, int version) async {
@@ -40,55 +55,62 @@ class CounterApp extends Cubit<CounterStatus> {
           print('Error is $error');
         });
       },
-      onOpen: (database) {
-        getDatabase(database).then((value) {
-          listDataAll = value;
-          print(listDataAll);
-        });
-      },
+      onOpen: (database) {},
     ).then((value) {
       database = value;
       emit(CreateDatabaseApp());
+      getDatabase(database);
+    });
+  }
+
+  void getDatabase(database) async {
+    await database!.rawQuery('SELECT * FROM Test').then((value) {
+      listDataDone.clear();
+      listDataArchived.clear();
+      listDataAll.clear();
+      value.forEach((element) async {
+        if (element['status'] == 'done') {
+          listDataDone.add(element);
+        } else if (element['status'] == 'archive') {
+          listDataArchived.add(element);
+        } else {
+          listDataAll.add(element);
+        }
+      });
+      emit(GetDatabaseApp());
     });
   }
 
   Future insertDataBase(Database database) async {
-    int id1;
     database.transaction((txn) async {
       txn
           .rawInsert(
-        'INSERT INTO Test(task, status, date,time) VALUES("${task.text}", "${status.text}","${date.text}", "${time.text}")',
+        'INSERT INTO Test(task, status, date,time) VALUES("${task.text}", "new","${date.text}", "${time.text}")',
       )
           .then((value) {
-        id1 = value;
         emit(InsertDatabaseApp());
-        getDatabase(database).then((value) {
-
-          listDataAll = value;
-          emit(GetDatabaseApp());
-        });
+        getDatabase(database);
       });
-    }).then((value) {});
-  }
-
-  Future<List<Map>> getDatabase(database) {
-    return database!.rawQuery('SELECT * FROM Test');
-  }
-  void upDate (String state ,int id ){
-    database!.rawUpdate('UPDATE task SET status = ? WHERE id = ?',['$status',id],).then((value){
-      emit(UpdateDatabaseApp());
+      task.text='';
+      time.text='';
+      date.text='';
     });
   }
 
-  void changIndex(index) {
-    currentIndex = index;
-    emit(ChangBottom());
-  }IconData fbIcon = Icons.edit;
-  bool isBottomSheet = false;
+  void updateData({required String status, required int id}) async {
+    database!.rawUpdate(
+        'UPDATE Test SET status = ? WHERE id = ?', [status, id]).then((value) {
+      emit(UpdateDatabaseApp());
+      print('updated : $status id : $id ');
+    });
+  }
 
-  void changBottomSheet({required bool isShow, required IconData icon}){
-    isBottomSheet=isShow;
-    fbIcon=icon;
-    emit(ChangBottomSheet());
+  Future deleteData({required int id}) async {
+   return await database!
+        .rawDelete('DELETE FROM Test WHERE id = ?', ['$id']).then((value) {
+
+          emit(DeleteRow());
+          getDatabase(database);
+    });
   }
 }

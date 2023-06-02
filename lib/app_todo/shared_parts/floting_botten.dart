@@ -28,28 +28,10 @@ Widget flotingBotten(BuildContext context) {
                 decoration: const InputDecoration(
                   label: Text(
                     "Enter name task",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500,),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500,),
                   ),
                   suffixIcon: Icon(Icons.task,size: 32,),
 
-                ),
-                validator: (value) {
-                  if(value!.isEmpty){
-                    return "Pleas Enter this files";
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 5,),
-              TextFormField(
-                controller: status,
-                keyboardType: TextInputType.text,
-                decoration: const InputDecoration(
-                  label: Text(
-                    "Enter status",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-                  ),
-                  suffixIcon: Icon(Icons.newspaper_outlined,size: 32,),
                 ),
                 validator: (value) {
                   if(value!.isEmpty){
